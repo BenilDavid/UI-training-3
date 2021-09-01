@@ -7,11 +7,18 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .header {
   background-image: url(../images/pattern-bg.png);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 300px;
+  height: 350px;
   width: 100%;
 }
 
@@ -59,7 +66,9 @@ body {
 }
 
 .header .container .input-ip .search-btn {
-  width: 120px;
+  border: none;
+  cursor: pointer;
+  width: 55px;
   border-radius: 0px 10px 10px 0px;
   padding: 16px 20px;
   margin-left: -54px;
@@ -79,7 +88,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: -60px;
+  margin-top: -150px;
 }
 
 .main .result-container .result-box {
@@ -92,6 +101,7 @@ body {
   border-radius: 10px;
   -webkit-box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 @media (max-width: 900px) {
@@ -160,5 +170,12 @@ body {
     font-size: 20px;
     text-align: center;
   }
+}
+
+#map {
+  margin-top: -92px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
 /*# sourceMappingURL=style.css.map */
