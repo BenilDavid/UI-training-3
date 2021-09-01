@@ -11,17 +11,7 @@ var search_btn = document.getElementById('search_btn');
 
 var latitude = 13.0827;
 var longitude = 80.2707;
-// var map = L.map('map').setView([13.0827, 80.2707], 13);
 
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-// 	attribution:
-// 		'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-// }).addTo(map);
-
-// L.marker([13.0827, 80.2707])
-// 	.addTo(map)
-// 	// .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-// 	.openPopup();
 map = L.map('map').setView([latitude, longitude], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -66,20 +56,15 @@ function updateResultDetails(ip, country, timezone, isp) {
 	current_time.innerHTML = timezone;
 	current_isp.innerHTML = isp;
 }
-function updateMapMarker(latitude, longitude) {
-	console.log(latitude);
-	console.log(longitude);
-
-    
-	// map = L.map('map').setView([latitude, longitude], 13);
-
-	// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	// 	attribution:
-	// 		'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	// }).addTo(map);
-
-	// L.marker([latitude, longitude])
-	// 	.addTo(map)
-	// 	// .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-	// 	.openPopup();
+function updateMapMarker(lat, long) {
+	console.log(lat);
+	console.log(long);
+	// latlng
+	// var latlng = L.latLng(lat, long);
+	// marker
+	marker = L.marker(map.getCenter()).addTo(map);
+	var newLatLng = new L.LatLng(lat, long);
+	marker.setLatLng(newLatLng);
+	// setView(latlng, 8);
+	// console.log(getCenter());
 }
