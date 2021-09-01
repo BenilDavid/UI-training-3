@@ -16,7 +16,7 @@ body {
 	background-image: url(../images/pattern-bg.png);
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 350px;
+	height: 300px;
 	width: 100%;
 	.container {
 		display: grid;
@@ -55,14 +55,11 @@ body {
 			}
 		}
 	}
-}
-.main {
-	width: 100%;
 	.result-container {
 		display: grid;
 		justify-content: center;
 		align-items: center;
-		margin-top: -150px;
+
 		.result-box {
 			display: flex;
 			width: 100%;
@@ -71,12 +68,13 @@ body {
 			border-radius: 10px;
 			box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.1);
 			z-index: 10;
+			margin-top: 60px;
 			@media (max-width: 900px) {
 				padding: 30px 20px;
 			}
 			@media (max-width: 700px) {
 				display: block;
-				margin-top: -70px;
+				margin-top: 20px;
 			}
 			.info-block {
 				padding: 10px 20px;
@@ -123,10 +121,8 @@ body {
 		}
 	}
 }
+
 #map {
-	margin-top: -92px;
-	// overflow: auto;
-	// background-color: #303030;
 	height: 100%;
 	width: 100%;
 	z-index: 1;
