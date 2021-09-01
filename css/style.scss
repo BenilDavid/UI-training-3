@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+body {
+	box-sizing: border-box;
+	margin: 0;
+	font-family: 'Rubik', sans-serif;
+}
+.header {
+	background-image: url(../images/pattern-bg.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+	width: 100%;
+	.container {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		.heading {
+			text-align: center;
+			color: #fff;
+			margin: 20px 0px;
+		}
+		.input-ip {
+			margin: 20px 0px;
+			cursor: pointer;
+			input {
+				font-size: 16px;
+				width: 600px;
+				border: none;
+				border-radius: 10px;
+				padding: 15px 20px;
+				outline: none;
+				@media (max-width: 900px) {
+					width: 400px;
+				}
+				@media (max-width: 400px) {
+					width: 300px;
+				}
+			}
+			.search-btn {
+				width: 120px;
+				border-radius: 0px 10px 10px 0px;
+				padding: 16px 20px;
+				margin-left: -54px;
+				background-color: #303030;
+			}
+		}
+	}
+}
+.main {
+	width: 100%;
+	.result-container {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		margin-top: -60px;
+		.result-box {
+			display: flex;
+			width: 100%;
+			padding: 40px 40px;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.1);
+			@media (max-width: 900px) {
+				padding: 30px 20px;
+			}
+			@media (max-width: 700px) {
+				display: block;
+				margin-top: -70px;
+			}
+			.info-block {
+				padding: 10px 20px;
+				&:nth-child(1),
+				&:nth-child(2),
+				&:nth-child(3) {
+					border-right: 1px solid #505050;
+				}
+				@media (max-width: 700px) {
+					&:nth-child(1),
+					&:nth-child(2),
+					&:nth-child(3) {
+						border-right: none;
+					}
+				}
+				.title {
+					font-size: 14px;
+					letter-spacing: 1px;
+					color: #818181;
+					@media (max-width: 900px) {
+						font-size: 12px;
+					}
+					@media (max-width: 700px) {
+						font-size: 14px;
+						text-align: center;
+					}
+				}
+				.result {
+					font-size: 20px;
+					font-weight: 700;
+					line-height: 1.8;
+					text-align: center;
+					@media (max-width: 900px) {
+						line-height: 1;
+						font-size: 18px;
+					}
+					@media (max-width: 700px) {
+						line-height: 1.8;
+						font-size: 20px;
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}
