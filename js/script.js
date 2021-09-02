@@ -9,19 +9,20 @@ var current_isp = document.getElementById('current_isp');
 var entered_ip = document.getElementById('ip_address');
 var search_btn = document.getElementById('search_btn');
 
-var latitude = 13.0827;
-var longitude = 80.2707;
+var map = L.map('map', {
+	center: [51.505, -0.09],
+	zoom: 13,
+	layers: [
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution:
+				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		}),
+	],
+});
 
-map = L.map('map').setView([latitude, longitude], 13);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	attribution:
-		'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
-
-L.marker([latitude, longitude])
+var mark = L.marker([51.505, -0.09])
 	.addTo(map)
-	// .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+	.bindPopup('Your IP Location.')
 	.openPopup();
 
 search_btn.addEventListener('click', function () {
@@ -32,7 +33,7 @@ search_btn.addEventListener('click', function () {
 			url: 'https://geo.ipify.org/api/v1',
 			data: { apiKey: api_key, ipAddress: ip },
 			success: function (data) {
-				$('body').append('<pre>' + JSON.stringify(data, '', 2) + '</pre>');
+				// $('body').append('<pre>' + JSON.stringify(data, '', 2) + '</pre>');
 				updateResultDetails(
 					data.ip,
 					data.location.country,
@@ -47,24 +48,21 @@ search_btn.addEventListener('click', function () {
 
 // update result box
 function updateResultDetails(ip, country, timezone, isp) {
-	console.log(ip);
-	console.log(country);
-	console.log(timezone);
-	console.log(isp);
 	current_ip.innerHTML = ip;
 	current_location.innerHTML = country;
 	current_time.innerHTML = timezone;
 	current_isp.innerHTML = isp;
 }
-function updateMapMarker(lat, long) {
-	console.log(lat);
-	console.log(long);
-	// latlng
-	// var latlng = L.latLng(lat, long);
-	// marker
-	marker = L.marker(map.getCenter()).addTo(map);
-	var newLatLng = new L.LatLng(lat, long);
+
+// updating map marker
+function updateMapMarker(latitude, longitude) {
+	console.log(latitude);
+	console.log(longitude);
+
+	map.removeLayer(mark);
+
+	var marker = L.marker(map.getCenter()).addTo(map);
+	var newLatLng = new L.LatLng(latitude, longitude);
 	marker.setLatLng(newLatLng);
-	// setView(latlng, 8);
-	// console.log(getCenter());
+	map.setView([latitude, longitude], 13);
 }
