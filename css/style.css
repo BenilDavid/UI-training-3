@@ -114,6 +114,7 @@ body {
 }
 
 .header .result-container .result-box .info-block {
+  text-align: center;
   padding: 10px 20px;
 }
 
@@ -142,7 +143,6 @@ body {
 @media (max-width: 700px) {
   .header .result-container .result-box .info-block .title {
     font-size: 14px;
-    text-align: center;
   }
 }
 
@@ -150,13 +150,13 @@ body {
   font-size: 20px;
   font-weight: 700;
   line-height: 1.8;
-  text-align: center;
 }
 
 @media (max-width: 900px) {
   .header .result-container .result-box .info-block .result {
     line-height: 1;
     font-size: 18px;
+    text-align: left;
   }
 }
 
@@ -164,7 +164,6 @@ body {
   .header .result-container .result-box .info-block .result {
     line-height: 1.8;
     font-size: 20px;
-    text-align: center;
   }
 }
 

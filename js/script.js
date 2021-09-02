@@ -10,7 +10,7 @@ var entered_ip = document.getElementById('ip_address');
 var search_btn = document.getElementById('search_btn');
 
 var map = L.map('map', {
-	// center: [51.505, -0.09],
+	center: [51.505, -0.09],
 	zoom: 13,
 	layers: [
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -18,7 +18,7 @@ var map = L.map('map', {
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		}),
 	],
-}).locate({ setView: true, maxZoom: 13 });
+});
 console.log(map);
 var mark;
 navigator.geolocation.getCurrentPosition(function (position) {
@@ -43,6 +43,7 @@ $.getJSON('https://api.ipify.org?format=json', function (data) {
 				data.location.timezone,
 				data.isp
 			);
+			updateMapMarker(data.location.lat, data.location.lng);
 		},
 	});
 });
