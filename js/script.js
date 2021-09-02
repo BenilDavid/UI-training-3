@@ -10,7 +10,7 @@ var entered_ip = document.getElementById('ip_address');
 var search_btn = document.getElementById('search_btn');
 
 var map = L.map('map', {
-	center: [51.505, -0.09],
+	// center: [51.505, -0.09],
 	zoom: 13,
 	layers: [
 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -18,12 +18,25 @@ var map = L.map('map', {
 				'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 		}),
 	],
+}).locate({ setView: true, maxZoom: 13 });
+// console.log(map.center);
+var mark;
+navigator.geolocation.getCurrentPosition(function (position) {
+	console.log(position.coords.latitude);
+	console.log(position.coords.longitude);
+	var lat = position.coords.latitude;
+	var long = position.coords.longitude;
+	mark = L.marker([lat, long])
+		.addTo(map)
+		.bindPopup('Your IP Location.')
+		.openPopup();
 });
 
-var mark = L.marker([51.505, -0.09])
-	.addTo(map)
-	.bindPopup('Your IP Location.')
-	.openPopup();
+// var myLocation = map.locate({ setView: true, maxZoom: 13 });
+// console.log(myLocation._lastCenter.lat);
+// console.log(myLocation._lastCenter.lng);
+// var myCurrentLatitude = myLocation._lastCenter.lat;
+// var myCurrentLongitude = myLocation._lastCenter.lng;
 
 search_btn.addEventListener('click', function () {
 	console.log(entered_ip.value);
