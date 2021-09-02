@@ -19,11 +19,10 @@ var map = L.map('map', {
 		}),
 	],
 }).locate({ setView: true, maxZoom: 13 });
-// console.log(map.center);
+console.log(map);
 var mark;
 navigator.geolocation.getCurrentPosition(function (position) {
-	console.log(position.coords.latitude);
-	console.log(position.coords.longitude);
+	console.log(position);
 	var lat = position.coords.latitude;
 	var long = position.coords.longitude;
 	mark = L.marker([lat, long])
@@ -32,11 +31,21 @@ navigator.geolocation.getCurrentPosition(function (position) {
 		.openPopup();
 });
 
-// var myLocation = map.locate({ setView: true, maxZoom: 13 });
-// console.log(myLocation._lastCenter.lat);
-// console.log(myLocation._lastCenter.lng);
-// var myCurrentLatitude = myLocation._lastCenter.lat;
-// var myCurrentLongitude = myLocation._lastCenter.lng;
+$.getJSON('https://api.ipify.org?format=json', function (data) {
+	console.log(data.ip);
+	$.ajax({
+		url: 'https://geo.ipify.org/api/v1',
+		data: { apiKey: api_key, ipAddress: data.ip },
+		success: function (data) {
+			updateResultDetails(
+				data.ip,
+				data.location.country,
+				data.location.timezone,
+				data.isp
+			);
+		},
+	});
+});
 
 search_btn.addEventListener('click', function () {
 	console.log(entered_ip.value);
