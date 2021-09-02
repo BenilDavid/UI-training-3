@@ -19,32 +19,28 @@ var map = L.map('map', {
 		}),
 	],
 });
-console.log(map);
-var mark;
-navigator.geolocation.getCurrentPosition(function (position) {
-	console.log(position);
-	var lat = position.coords.latitude;
-	var long = position.coords.longitude;
-	mark = L.marker([lat, long])
-		.addTo(map)
-		.bindPopup('Your IP Location.')
-		.openPopup();
-});
+// console.log(map);
+// var mark = L.marker([51.505, -0.09])
+// 	.addTo(map)
+// 	.bindPopup('Your IP Location.')
+// 	.openPopup();
 
 $.getJSON('https://api.ipify.org?format=json', function (data) {
 	console.log(data.ip);
-	$.ajax({
-		url: 'https://geo.ipify.org/api/v1',
-		data: { apiKey: api_key, ipAddress: data.ip },
-		success: function (data) {
-			updateResultDetails(
-				data.ip,
-				data.location.country,
-				data.location.timezone,
-				data.isp
-			);
-			updateMapMarker(data.location.lat, data.location.lng);
-		},
+	$(function () {
+		$.ajax({
+			url: 'https://geo.ipify.org/api/v1',
+			data: { apiKey: api_key, ipAddress: data.ip },
+			success: function (data) {
+				updateResultDetails(
+					data.ip,
+					data.location.country,
+					data.location.timezone,
+					data.isp
+				);
+				updateMapMarker(data.location.lat, data.location.lng);
+			},
+		});
 	});
 });
 
@@ -82,7 +78,7 @@ function updateMapMarker(latitude, longitude) {
 	console.log(latitude);
 	console.log(longitude);
 
-	map.removeLayer(mark);
+	// map.removeLayer(mark);
 
 	var marker = L.marker(map.getCenter()).addTo(map);
 	var newLatLng = new L.LatLng(latitude, longitude);
