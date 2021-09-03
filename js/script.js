@@ -85,3 +85,26 @@ function updateMapMarker(latitude, longitude) {
 	marker.setLatLng(newLatLng);
 	map.setView([latitude, longitude], 13);
 }
+
+var apiKey =
+	'AAPK6b110e7bee654ed3a1c4d916237c783e25bzt4TABitrzkhw4I6yfCRnOhHJ40IHND8HmQoxYgOZcTLfeB2gDXBRyHz4ftp7';
+
+var geocodeService = L.esri.Geocoding.geocodeService({
+	apikey: apiKey, // replace with your api key - https://developers.arcgis.com
+});
+
+map.on('click', function (e) {
+	geocodeService
+		.reverse()
+		.latlng(e.latlng)
+		.run(function (error, result) {
+			if (error) {
+				return;
+			}
+
+			L.marker(result.latlng)
+				.addTo(map)
+				.bindPopup(result.address.Match_addr)
+				.openPopup();
+		});
+});
